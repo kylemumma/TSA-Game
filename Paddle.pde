@@ -16,12 +16,12 @@ class Paddle {
     yPos = angleToY(currentDegree, radius);
     
     //fill(100);
-    //ellipse(yPos, xPos, 10, 10);
+    //ellipse(xPos, yPos, 10, 10);
     
     stroke(paddleColor);
     strokeWeight(5);
-    line(yPos + (xPos / paddleScale), xPos - (yPos / paddleScale),
-    yPos - (xPos / paddleScale), xPos + (yPos / paddleScale));
+    line(xPos - (yPos / paddleScale), yPos + (xPos / paddleScale),
+    xPos + (yPos / paddleScale), yPos - (xPos / paddleScale));
     noStroke();
     
   }

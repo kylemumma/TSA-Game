@@ -47,24 +47,16 @@ void setup() {
 }
 
 void draw() {
-  simulatePhysics();
-  processCollisions();
-  
-  background(200);
-  noStroke();
   
   //Sets up proper coordinate system
-  translate(width/2, height/2); //sets origin to center instead of top left corner
-  rotate(radians(-90)); //converts graph from computer points to real life points
-  //IMPORTANT: coordinate: (y, x) --NOT-- (x, y)
+  scale(1, -1); //Converts computer grid to real world grid
+  translate(width/2, -height/2); //sets origin to center instead of top left corner
   
-  //Shows paddles
-  for(Paddle paddle : paddles){
-    paddle.show();
-  }
+  simulatePhysics();
   
-  //Shows ball
-  ball.show();
+  processCollisions();
+  
+  repaint();
   
 }
 
@@ -81,6 +73,19 @@ void processCollisions() {
   // - Write code for collision detection on paddles
   // (collides ONLY if colliding with paddle AND paddle is same color as ball)
   // after collision adds 1 point to player score
+}
+
+void repaint(){
+  background(200);
+  noStroke();
+  
+  //Shows paddles
+  for(Paddle paddle : paddles){
+    paddle.show();
+  }
+  
+  //Shows ball
+  ball.show();
 }
 
 void keyPressed() {

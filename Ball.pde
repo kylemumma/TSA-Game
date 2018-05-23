@@ -5,26 +5,35 @@ import java.util.Random;
 
 private PVector pos = new PVector(0, 0);
 private PVector vel = new PVector(0, 0);
-private final int SIZE = 10;
+private final int DIAMETER = 10;
+private final int SPEED = 3;
+//private PImage ballImage;
 
 Random rand = new Random();
 
 class Ball {
   
   void start(){
-    //x velocity
-    vel.x = rand.nextInt(2);
-    if(vel.x == 0){
-      vel.x = -1;
-    }
+    //set ball sprite
+    //ballImage = loadImage("ball.png");
     
+    //x velocity
+    vel.x = rand.nextInt(11) - 5;
+    
+    //y velocity
     vel.y = rand.nextInt(11) - 5;
+    
+    //normalize velocity
+    float magnitude = sqrt(vel.x*vel.x + vel.y*vel.y);
+    vel.x = SPEED * (vel.x / magnitude);
+    vel.y = SPEED * (vel.y / magnitude);
     
   }
 
   void show() {
+    //image(ballImage, pos.x, pos.y, SIZE, SIZE);
     fill(75);
-    ellipse(pos.y, pos.x, SIZE, SIZE);
+    ellipse(pos.x, pos.y, DIAMETER, DIAMETER);
   }
 
   void update() {
