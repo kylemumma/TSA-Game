@@ -1,8 +1,12 @@
 class Paddle {
 
   int degOfOffset;
-  float xPos;
-  float yPos;
+  float xCenter;
+  float yCenter;
+  float x1;
+  float y1;
+  float x2;
+  float y2;
   float paddleScale = 5;
   color paddleColor;
 
@@ -12,16 +16,21 @@ class Paddle {
   }
 
   void show() {
-    xPos = angleToX(currentDegree, radius);
-    yPos = angleToY(currentDegree, radius);
+    xCenter = angleToX(currentDegree, radius);
+    yCenter = angleToY(currentDegree, radius);
+    
+    x1 = xCenter - (yCenter / paddleScale);
+    y1 = yCenter + (xCenter / paddleScale);
+    x2 = xCenter + (yCenter / paddleScale);
+    y2 = yCenter - (xCenter / paddleScale);
+    
     
     //fill(100);
-    //ellipse(xPos, yPos, 10, 10);
+    //ellipse(xCenter, yCenter, 10, 10);
     
     stroke(paddleColor);
     strokeWeight(5);
-    line(xPos - (yPos / paddleScale), yPos + (xPos / paddleScale),
-    xPos + (yPos / paddleScale), yPos - (xPos / paddleScale));
+    line(x1, y1, x2, y2);
     noStroke();
     
   }

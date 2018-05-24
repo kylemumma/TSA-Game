@@ -9,25 +9,27 @@ private final int DIAMETER = 10;
 private final int SPEED = 3;
 //private PImage ballImage;
 
-Random rand = new Random();
-
 class Ball {
   
   void start(){
     //set ball sprite
     //ballImage = loadImage("ball.png");
     
+    setRandomVelocity();
+    
+  }
+  
+  void setRandomVelocity(){
     //x velocity
-    vel.x = rand.nextInt(11) - 5;
+    vel.x = random(11) - 5;
     
     //y velocity
-    vel.y = rand.nextInt(11) - 5;
+    vel.y = random(11) - 5;
     
     //normalize velocity
     float magnitude = sqrt(vel.x*vel.x + vel.y*vel.y);
     vel.x = SPEED * (vel.x / magnitude);
     vel.y = SPEED * (vel.y / magnitude);
-    
   }
 
   void show() {
@@ -39,6 +41,10 @@ class Ball {
   void update() {
     pos.x += vel.x;
     pos.y += vel.y;
+  }
+  
+  float getRadius(){
+    return DIAMETER / 2;
   }
 
   float getX() {
